@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EventTrack</key>
+	<dict>
+		<key>TestCViewController</key>
+		<array>
+			<dict>
+				<key>eventId</key>
+				<string>FavoriteButton</string>
+				<key>eventType</key>
+				<string>0</string>
+				<key>mSelector</key>
+				<string>favoriteButtonResponse:</string>
+			</dict>
+			<dict>
+				<key>eventId</key>
+				<string>CollectButton</string>
+				<key>eventType</key>
+				<string>0</string>
+				<key>mSelector</key>
+				<string>collecteButtonResponse:</string>
+			</dict>
+			<dict>
+				<key>eventId</key>
+				<string>RepostButton</string>
+				<key>eventType</key>
+				<string>1</string>
+				<key>mSelector</key>
+				<string>repostButtonResponse:</string>
+			</dict>
+			<dict>
+				<key>eventId</key>
+				<string>xianzhuo</string>
+				<key>eventType</key>
+				<string>1</string>
+				<key>mSelector</key>
+				<string>duangButtonResponse</string>
+			</dict>
+		</array>
+		<key>ViewController</key>
+		<array>
+			<dict>
+				<key>eventId</key>
+				<string>mainTableView</string>
+				<key>eventType</key>
+				<string>2</string>
+				<key>mSelector</key>
+				<string>tableView:didSelectRowAtIndexPath:</string>
+			</dict>
+		</array>
+	</dict>
+	<key>LiftCycleTrack</key>
+	<array>
+		<string>TestAViewController</string>
+		<string>TestBViewController</string>
+		<string>TestCViewController</string>
+	</array>
+</dict>
+</plist>

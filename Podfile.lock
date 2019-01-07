@@ -1,0 +1,22 @@
+PODS:
+  - Aspects (1.4.1)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+
+DEPENDENCIES:
+  - Aspects (~> 1.4.1)
+  - FMDB (~> 2.7.5)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Aspects
+    - FMDB
+
+SPEC CHECKSUMS:
+  Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+
+PODFILE CHECKSUM: cf00e0580451676df1c16c58e5c22579878f342c
+
+COCOAPODS: 1.5.2

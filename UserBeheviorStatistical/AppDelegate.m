@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "AspectsMonitor.h"
+#import "EventTrackModel.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [[AspectsMonitor setupMonitor] statisticVCLifeCycleWith:@"AspectsList.plist" viewControllerKey:@"LiftCycleTrack"];
+    [[AspectsMonitor setupMonitor]statisticEventWith:@"AspectsList.plist" EventKey:@"EventTrack"];
+
+    EventTrackModel *model = [[EventTrackModel alloc]initWithControllerName:@"123" eventID:@"123452" eventType:@"7654" mSelector:@"fdhsik" times:999 timestamp:@"21332tgr"];
+    
     return YES;
 }
 
