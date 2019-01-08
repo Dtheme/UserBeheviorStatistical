@@ -11,12 +11,17 @@
 #import <objc/runtime.h>
 #import <objc/objc.h>
 #import <Aspects/Aspects.h>
+#import "AspectsLocalStorage.h"
+#import "EventTrackModel.h"
+#import "LifeCycleTrackModel.h"
 
 #ifdef DEBUG
 # define NSLog(...) NSLog(__VA_ARGS__)
 #else
 # define NSLog(...) {}
 #endif
+
+#define UBS_Storage [AspectsLocalStorage setupStorage]
 
 typedef enum : NSUInteger {
     EventTypeDefultWithoutParams,
@@ -93,22 +98,22 @@ typedef enum : NSUInteger {
 
 
 - (void)trackViewTimeWithClass:(NSArray *)classes{
+
     [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo> info){
         if ([classes containsObject:NSStringFromClass([info.instance class])]){
-            
             //用户统计代码写在此处
             NSLog(@"统计:%@ viewWillAppear",NSStringFromClass([info.instance class]));
-            
+            LifeCycleTrackModel *model = [[LifeCycleTrackModel alloc]initWithControllerName:NSStringFromClass([info.instance class]) tViewWillAppear:[[self timestampString]doubleValue] tViewDidLoad:0 tViewWillDisappear:0 times:0 viewControllerID:NSStringFromClass([info.instance class])];
+            [UBS_Storage saveDataWithLifeCycleTrackModel:model];
         }
-
-
     } error:NULL];
-    
     
     [UIViewController aspect_hookSelector:@selector(viewDidLoad) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>info){
         if ([classes containsObject:NSStringFromClass([info.instance class])]){
             //用户统计代码写在此处
             NSLog(@"统计:%@ viewDidLoad",NSStringFromClass([info.instance class]));
+            LifeCycleTrackModel *model = [[LifeCycleTrackModel alloc]initWithControllerName:NSStringFromClass([info.instance class]) tViewWillAppear:0 tViewDidLoad:[[self timestampString]doubleValue] tViewWillDisappear:0 times:0 viewControllerID:NSStringFromClass([info.instance class])];
+            [UBS_Storage saveDataWithLifeCycleTrackModel:model];
         }
     } error:NULL];
     
@@ -116,6 +121,8 @@ typedef enum : NSUInteger {
         if ([classes containsObject:NSStringFromClass([info.instance class])]){
             //用户统计代码写在此处
             NSLog(@"统计:%@ viewWillDisappear",NSStringFromClass([info.instance class]));
+            LifeCycleTrackModel *model = [[LifeCycleTrackModel alloc]initWithControllerName:NSStringFromClass([info.instance class]) tViewWillAppear:0 tViewDidLoad:0 tViewWillDisappear:[[self timestampString]doubleValue] times:0 viewControllerID:NSStringFromClass([info.instance class])];
+            [UBS_Storage saveDataWithLifeCycleTrackModel:model];
         }
     }error:NULL];
     
@@ -125,17 +132,11 @@ typedef enum : NSUInteger {
 - (void)trackEventWithClass:(Class)class selector:(SEL)selector eventID:(NSString*)eventID{
     
     [class aspect_hookSelector:selector withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo) {
-        
-        //vc
+
+        // NSLog(@"className--->%@",className);
+        // NSLog(@"event----->%@",eventID);
         NSString *className = NSStringFromClass([aspectInfo.instance class]);
-        NSLog(@"className--->%@",className);
-        NSLog(@"event----->%@",eventID);
-        //针对指定事件进行统计
-        if ([eventID isEqualToString:@"xxx"]) {
-
-        }else{
-
-        }
+        [self statisticalEventTrackWithClass:class className:className selector:selector eventID:eventID];
     } error:NULL];
 }
 
@@ -145,11 +146,13 @@ typedef enum : NSUInteger {
     
     [class aspect_hookSelector:selector withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo,UIButton *button) {
         
-        NSLog(@"button---->%@",button);
+        // NSLog(@"button---->%@",button);
+        // NSLog(@"className--->%@",className);
+        // NSLog(@"event----->%@",eventID);
+
         NSString *className = NSStringFromClass([aspectInfo.instance class]);
-        NSLog(@"className--->%@",className);
-        NSLog(@"event----->%@",eventID);
-        
+        [self statisticalEventTrackWithClass:class className:className selector:selector eventID:eventID];
+
     } error:NULL];
 }
 
@@ -168,9 +171,10 @@ typedef enum : NSUInteger {
         NSInteger section = [[event valueForKeyPath:@"section"]integerValue];
         NSInteger row = [[event valueForKeyPath:@"row"]integerValue];
         
-        //针对指定事件进行统计
+        [self statisticalEventTrackWithClass:class className:className selector:selector eventID:eventID];
+        //如果需要针对指定事件进行统计 可以自定义添加对indexpath统计
         if (section == 0 && row == 1) {
-
+            
         }
         
     } error:NULL];
@@ -191,6 +195,24 @@ typedef enum : NSUInteger {
     NSDictionary *sourceDict = [[NSDictionary alloc]initWithContentsOfFile:path];
     NSDictionary *trackItem = sourceDict[kItem];
     return [trackItem copy];
+}
+
+//获取时间戳
+- (NSString *)timestampString{
+    NSInteger timestamp = (long)([[NSDate date] timeIntervalSince1970]*1000);
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    NSDateFormatter *dateFormat=[[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString* string=[dateFormat stringFromDate:confromTimesp];
+    return string;
+}
+
+
+- (void)statisticalEventTrackWithClass:(Class)class className:(NSString *)className selector:(SEL)selector eventID:(NSString*)eventID{
+
+    NSString *mSelector = NSStringFromSelector(selector);
+    EventTrackModel *model = [[EventTrackModel alloc]initWithControllerName:className eventID:eventID mSelector:mSelector times:1 timestamp:[self timestampString]];
+    [UBS_Storage saveDataWithEventTrackModel:model];
 }
 
 @end

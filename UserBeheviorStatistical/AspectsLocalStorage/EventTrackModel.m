@@ -12,7 +12,6 @@
 
 - (instancetype)initWithControllerName:(NSString *)controllerName
                                       eventID:(NSString *)eventID
-                                    eventType:(NSString *)eventType
                                     mSelector:(NSString *)mSelector
                                         times:(NSInteger)times
                                     timestamp:(NSString *)timestamp
@@ -20,7 +19,6 @@
     if (self = [super init]) {
         _controllerName = controllerName;
         _eventID = eventID;
-        _eventType = eventType;
         _mSelector = mSelector;
         _times = times;
         _timestamp = timestamp;

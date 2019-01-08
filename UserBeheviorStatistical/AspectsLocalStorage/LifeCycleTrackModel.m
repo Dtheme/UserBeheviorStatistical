@@ -11,17 +11,20 @@
 @implementation LifeCycleTrackModel
 
 -(instancetype)initWithControllerName:(NSString *)controllerName
-                         viewDuration:(float)viewDuration
-                        startDuration:(float)startDuration
+                      tViewWillAppear:(double)tViewWillAppear
+                         tViewDidLoad:(double)tViewDidLoad
+                   tViewWillDisappear:(double)tViewWillDisappear
                                 times:(NSInteger)times
-                            timestamp:(NSString *)timestamp
+                     viewControllerID:(NSString *)viewControllerID;
 {
     if (self = [super init]) {
         _controllerName = controllerName;
-        _viewDuration = viewDuration;
-        _startDuration = startDuration;
+        _viewControllerID = controllerName;
+        _tViewDidLoad = tViewDidLoad;
+        _tViewWillAppear = tViewWillAppear;
+        _tViewWillDisappear = tViewWillDisappear;
         _times = times;
-        _timestamp = timestamp;
+        _viewControllerID = viewControllerID;
     }
     return self;
 }

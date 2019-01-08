@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDictionary *)getData;
 
 /**
- 每次重启app清空这个数据库里的统计数据
+ 清空数据库里的统计数据
  */
 - (void)resetDataBase;
 

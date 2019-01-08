@@ -13,16 +13,18 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LifeCycleTrackModel : NSObject
 
 @property (nonatomic, strong) NSString *controllerName;
-@property (nonatomic, assign) float viewDuration;
-@property (nonatomic, assign) float startDuration;
 @property (nonatomic, assign) NSInteger times;
-@property (nonatomic, strong) NSString *timestamp;
+@property (nonatomic, assign) NSString *viewControllerID;
+@property (nonatomic, assign) double tViewWillAppear;
+@property (nonatomic, assign) double tViewDidLoad;
+@property (nonatomic, assign) double tViewWillDisappear;
 
 -(instancetype)initWithControllerName:(NSString *)controllerName
-                         viewDuration:(float)viewDuration
-                        startDuration:(float)startDuration
+                      tViewWillAppear:(double)tViewWillAppear
+                         tViewDidLoad:(double)tViewDidLoad
+                   tViewWillDisappear:(double)tViewWillDisappear
                                 times:(NSInteger)times
-                            timestamp:(NSString *)timestamp;
+                     viewControllerID:(NSString *)viewControllerID;
 
 
 @end

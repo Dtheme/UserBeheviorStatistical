@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "AspectsMonitor.h"
 #import "EventTrackModel.h"
+#import "AspectsLocalStorage.h"
 
 @interface AppDelegate ()
 
@@ -20,8 +21,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[AspectsMonitor setupMonitor] statisticVCLifeCycleWith:@"AspectsList.plist" viewControllerKey:@"LiftCycleTrack"];
     [[AspectsMonitor setupMonitor]statisticEventWith:@"AspectsList.plist" EventKey:@"EventTrack"];
+    [AspectsLocalStorage setupStorage];
 
-    EventTrackModel *model = [[EventTrackModel alloc]initWithControllerName:@"123" eventID:@"123452" eventType:@"7654" mSelector:@"fdhsik" times:999 timestamp:@"21332tgr"];
     
     return YES;
 }
