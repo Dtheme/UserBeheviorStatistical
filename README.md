@@ -9,10 +9,11 @@
 
 ```
 .
-├── UserBeheviorStatistical
+├── classes
+│   ├── AspectsStatisticalManager:管理器
 │   ├── AspectsLocalStorage：切面数据存储器
-│   ├── AspectMonitor：用户行为切面统计器
-│   ├── Configuration：配置项 plist文件
+│   └── AspectMonitor：用户行为切面统计器
+└── Configuration：配置项：plist文件 全局define
 ```
 
 
@@ -71,15 +72,19 @@ json的形式表示：
 在`AppDelegate.m`中初始化工具类：
 
 ```objective-c
-[[AspectsMonitor setupMonitor] statisticVCLifeCycleWith:@"AspectsList.plist" viewControllerKey:@"LiftCycleTrack"];
-[[AspectsMonitor setupMonitor]statisticEventWith:@"AspectsList.plist" EventKey:@"EventTrack"];
-[AspectsLocalStorage setupStorage];
+修改UBSGlobaldefine.h中定义的宏，plist的文件名、plist中定义的监控事件和监控页面声明周期的key
+
+#define kEventTrack @"EventTrack"
+#define kLiftCycleTrack @"LiftCycleTrack"
+#define kConfigurationPlistFileName @"Aspects.plist"
+    
+[UBS_Manager runMonitorWithConfiguration:kConfigurationPlistFileName];
 ```
 
-获取上传数据
+获取本地存储的用户行为数据
 
 ```objective-c
-NSDictionary *data = [[AspectsLocalStorage setupStorage]getData];
+NSDictionary *dict = [UBS_Manager getDataFromLocalStorage];
 ```
 
 

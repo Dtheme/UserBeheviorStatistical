@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "AspectsLocalStorage.h"
+#import "AspectsStatisticalManager.h"
+
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -35,7 +36,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.testVCs.count;
+    return self.testVCs.count+1;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -43,14 +44,23 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    
+    if (indexPath.row == self.testVCs.count) {
+             cell.textLabel.text = @"===打印统计的数据===";
+    }else{
         cell.textLabel.text = [NSString stringWithFormat:@"%@",self.testVCs[indexPath.row]];
     }
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIViewController *vc = [[NSClassFromString(self.testVCs[indexPath.row]) class]new];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.row == self.testVCs.count) {
+        NSLog(@"%@",[UBS_Manager getDataFromLocalStorage]);
+    }else{
+        UIViewController *vc = [[NSClassFromString(self.testVCs[indexPath.row]) class]new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (NSArray *)testVCs{

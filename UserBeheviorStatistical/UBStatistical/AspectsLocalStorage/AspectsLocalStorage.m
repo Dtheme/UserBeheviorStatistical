@@ -146,9 +146,8 @@ pthread_mutex_t lock;
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     if ([_database tableExists:@"EventTrackTable"]) {
         FMResultSet *resultset=[_database executeQuery:@"SELECT * FROM EventTrackTable"];
+        NSMutableArray *EventTrackArr = [NSMutableArray array];
         while ([resultset next]) {
-            NSMutableArray *EventTrackArr = [NSMutableArray array];
-            
             NSString *vcName = [resultset stringForColumn:@"controllerName"];
             NSString *eventID = [resultset stringForColumn:@"eventID"];
             NSString *mSelector = [resultset stringForColumn:@"mSelector"];
@@ -165,12 +164,13 @@ pthread_mutex_t lock;
             eventModel.times = times;
             eventModel.timestamp = timestamp;
             [EventTrackArr addObject:eventModel];
-            [result setObject:EventTrackArr forKey:@"EventTrack"];
+            [result setObject:EventTrackArr forKey:kEventTrack];
         }
-    }else if ([_database tableExists:@"LifeCycleTrackTable"]){
+    }
+    if ([_database tableExists:@"LifeCycleTrackTable"]){
         FMResultSet *resultset=[_database executeQuery:@"SELECT * FROM LifeCycleTrackTable"];
+        NSMutableArray *LifeCycleTrackArr = [NSMutableArray array];
         while ([resultset next]) {
-            NSMutableArray *LifeCycleTrackArr = [NSMutableArray array];
             NSString *vcID  = [resultset stringForColumn:@"viewController_id"];
             NSString *vcName = [resultset stringForColumn:@"controllerName"];
             double tViewWillAppear = [resultset doubleForColumn:@"tViewWillAppear"];
@@ -180,13 +180,11 @@ pthread_mutex_t lock;
             
             LifeCycleTrackModel *vcModel = [[LifeCycleTrackModel alloc]initWithControllerName:vcName tViewWillAppear:tViewWillAppear tViewDidLoad:tViewDidLoad tViewWillDisappear:tViewWillDisappear times:times  viewControllerID:vcID];
             [LifeCycleTrackArr addObject:vcModel];
-            [result setObject:LifeCycleTrackArr forKey:@"LifeCycleTrack"];
+            [result setObject:LifeCycleTrackArr forKey:kLiftCycleTrack];
         }
     }
     NSLog(@"已查到数据...");
-    return result;
-    
-    return [NSDictionary dictionary];
+    return [result copy];
     //MARK: -  返回用户点击轨迹数据和用户页面访问轨迹 返回字典
     
 }

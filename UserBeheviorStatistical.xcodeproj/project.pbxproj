@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96062EA521E5E364003755B4 /* AspectsStatisticalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 96062EA421E5E364003755B4 /* AspectsStatisticalManager.m */; };
 		963FEFB121DDFB3600E7D317 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 963FEFB021DDFB3600E7D317 /* AppDelegate.m */; };
 		963FEFB721DDFB3600E7D317 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FEFB521DDFB3600E7D317 /* Main.storyboard */; };
 		963FEFB921DDFB3800E7D317 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 963FEFB821DDFB3800E7D317 /* Assets.xcassets */; };
@@ -28,6 +29,9 @@
 /* Begin PBXFileReference section */
 		37CB382CE7025A283DECC00A /* Pods-UserBeheviorStatistical.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UserBeheviorStatistical.release.xcconfig"; path = "Pods/Target Support Files/Pods-UserBeheviorStatistical/Pods-UserBeheviorStatistical.release.xcconfig"; sourceTree = "<group>"; };
 		7AA8D45B213AB83397CDC186 /* Pods_UserBeheviorStatistical.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UserBeheviorStatistical.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96062EA321E5E364003755B4 /* AspectsStatisticalManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AspectsStatisticalManager.h; sourceTree = "<group>"; };
+		96062EA421E5E364003755B4 /* AspectsStatisticalManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AspectsStatisticalManager.m; sourceTree = "<group>"; };
+		96062EA621E5E628003755B4 /* UBSGlobaldefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UBSGlobaldefine.h; sourceTree = "<group>"; };
 		963FEFAC21DDFB3600E7D317 /* UserBeheviorStatistical.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UserBeheviorStatistical.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		963FEFAF21DDFB3600E7D317 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		963FEFB021DDFB3600E7D317 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -73,8 +77,29 @@
 			isa = PBXGroup;
 			children = (
 				963FEFC721DDFB4900E7D317 /* AspectsList.plist */,
+				96062EA621E5E628003755B4 /* UBSGlobaldefine.h */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		96062EA121E5E32E003755B4 /* UBStatistical */ = {
+			isa = PBXGroup;
+			children = (
+				96062EA221E5E355003755B4 /* AspectsStatisticalManager */,
+				9668E78121E2F335005774A6 /* AspectsLocalStorage */,
+				963FEFC521DDFB4900E7D317 /* AspectsMonitor */,
+				96062EA021E5AC8D003755B4 /* Configuration */,
+			);
+			path = UBStatistical;
+			sourceTree = "<group>";
+		};
+		96062EA221E5E355003755B4 /* AspectsStatisticalManager */ = {
+			isa = PBXGroup;
+			children = (
+				96062EA321E5E364003755B4 /* AspectsStatisticalManager.h */,
+				96062EA421E5E364003755B4 /* AspectsStatisticalManager.m */,
+			);
+			path = AspectsStatisticalManager;
 			sourceTree = "<group>";
 		};
 		963FEFA321DDFB3600E7D317 = {
@@ -109,9 +134,7 @@
 				963FEFD121DDFB7C00E7D317 /* TestCViewController.h */,
 				963FEFD421DDFB7C00E7D317 /* TestCViewController.m */,
 				963FEFCD21DDFB7C00E7D317 /* TestCViewController.xib */,
-				9668E78121E2F335005774A6 /* AspectsLocalStorage */,
-				963FEFC521DDFB4900E7D317 /* AspectMonitor */,
-				96062EA021E5AC8D003755B4 /* Configuration */,
+				96062EA121E5E32E003755B4 /* UBStatistical */,
 				963FEFB521DDFB3600E7D317 /* Main.storyboard */,
 				963FEFB821DDFB3800E7D317 /* Assets.xcassets */,
 				963FEFBA21DDFB3800E7D317 /* LaunchScreen.storyboard */,
@@ -121,13 +144,13 @@
 			path = UserBeheviorStatistical;
 			sourceTree = "<group>";
 		};
-		963FEFC521DDFB4900E7D317 /* AspectMonitor */ = {
+		963FEFC521DDFB4900E7D317 /* AspectsMonitor */ = {
 			isa = PBXGroup;
 			children = (
 				963FEFC821DDFB4900E7D317 /* AspectsMonitor.h */,
 				963FEFC621DDFB4900E7D317 /* AspectsMonitor.m */,
 			);
-			path = AspectMonitor;
+			path = AspectsMonitor;
 			sourceTree = "<group>";
 		};
 		9668E78121E2F335005774A6 /* AspectsLocalStorage */ = {
@@ -284,6 +307,7 @@
 				963FEFB121DDFB3600E7D317 /* AppDelegate.m in Sources */,
 				963FEFD721DDFB7C00E7D317 /* ViewController.m in Sources */,
 				9668E78721E2F3E3005774A6 /* LifeCycleTrackModel.m in Sources */,
+				96062EA521E5E364003755B4 /* AspectsStatisticalManager.m in Sources */,
 				9668E78421E2F3CE005774A6 /* EventTrackModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +453,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 97KXK82D47;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/UserBeheviorStatistical/UBStatistical/Configuration/UBSGlobaldefine.h";
 				INFOPLIST_FILE = UserBeheviorStatistical/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -447,6 +472,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 97KXK82D47;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/UserBeheviorStatistical/UBStatistical/Configuration/UBSGlobaldefine.h";
 				INFOPLIST_FILE = UserBeheviorStatistical/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -7,9 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "AspectsMonitor.h"
-#import "EventTrackModel.h"
-#import "AspectsLocalStorage.h"
+#import "AspectsStatisticalManager.h"
 
 @interface AppDelegate ()
 
@@ -19,10 +17,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[AspectsMonitor setupMonitor] statisticVCLifeCycleWith:@"AspectsList.plist" viewControllerKey:@"LiftCycleTrack"];
-    [[AspectsMonitor setupMonitor]statisticEventWith:@"AspectsList.plist" EventKey:@"EventTrack"];
-    [AspectsLocalStorage setupStorage];
+//    [[AspectsMonitor setupMonitor] statisticVCLifeCycleWith:@"AspectsList.plist" viewControllerKey:@"LiftCycleTrack"];
+//    [[AspectsMonitor setupMonitor]statisticEventWith:@"AspectsList.plist" EventKey:@"EventTrack"];
+//    [AspectsLocalStorage setupStorage];
 
+    [UBS_Manager runMonitorWithConfiguration:kConfigurationPlistFileName];
     
     return YES;
 }

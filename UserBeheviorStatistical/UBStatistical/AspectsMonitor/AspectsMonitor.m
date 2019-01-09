@@ -15,13 +15,6 @@
 #import "EventTrackModel.h"
 #import "LifeCycleTrackModel.h"
 
-#ifdef DEBUG
-# define NSLog(...) NSLog(__VA_ARGS__)
-#else
-# define NSLog(...) {}
-#endif
-
-#define UBS_Storage [AspectsLocalStorage setupStorage]
 
 typedef enum : NSUInteger {
     EventTypeDefultWithoutParams,
