@@ -25,7 +25,7 @@ demo中定义了一个`AspectsList.plist`文件用于配置需要监控的内容
 
 json的形式表示：
 
-```json
+```
 {
     EventTrack =     {
         TestCViewController =         (
