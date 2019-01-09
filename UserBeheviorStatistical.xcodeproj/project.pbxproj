@@ -69,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96062EA021E5AC8D003755B4 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				963FEFC721DDFB4900E7D317 /* AspectsList.plist */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		963FEFA321DDFB3600E7D317 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +111,7 @@
 				963FEFCD21DDFB7C00E7D317 /* TestCViewController.xib */,
 				9668E78121E2F335005774A6 /* AspectsLocalStorage */,
 				963FEFC521DDFB4900E7D317 /* AspectMonitor */,
+				96062EA021E5AC8D003755B4 /* Configuration */,
 				963FEFB521DDFB3600E7D317 /* Main.storyboard */,
 				963FEFB821DDFB3800E7D317 /* Assets.xcassets */,
 				963FEFBA21DDFB3800E7D317 /* LaunchScreen.storyboard */,
@@ -115,7 +124,6 @@
 		963FEFC521DDFB4900E7D317 /* AspectMonitor */ = {
 			isa = PBXGroup;
 			children = (
-				963FEFC721DDFB4900E7D317 /* AspectsList.plist */,
 				963FEFC821DDFB4900E7D317 /* AspectsMonitor.h */,
 				963FEFC621DDFB4900E7D317 /* AspectsMonitor.m */,
 			);

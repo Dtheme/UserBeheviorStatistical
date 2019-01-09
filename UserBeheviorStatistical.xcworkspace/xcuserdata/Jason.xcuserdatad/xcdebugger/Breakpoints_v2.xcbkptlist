@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UserBeheviorStatistical/AspectsLocalStorage/AspectsLocalStorage.m"
-            timestampString = "568639613.659175"
+            filePath = "UserBeheviorStatistical/AspectMonitor/AspectsMonitor.m"
+            timestampString = "568700399.217723"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "-saveDataWithLifeCycleTrackModel:"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "-getConfigurationFrom:kItem:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
