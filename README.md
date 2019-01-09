@@ -13,7 +13,8 @@
 │   ├── AspectsStatisticalManager:管理器
 │   ├── AspectsLocalStorage：切面数据存储器
 │   └── AspectMonitor：用户行为切面统计器
-└── Configuration：配置项：plist文件 全局define
+├── Configuration：配置项：plist文件 全局define
+└──Pods使用：Aspects、FMDB
 ```
 
 
