@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)runMonitorWithConfiguration:(NSString *)plistFileName;
 
-- (NSDictionary *)getDataFromLocalStorage;
+- (NSString *)getDataFromLocalStorage;
 
 - (void)cleanUpLocalStorage;
 @end
