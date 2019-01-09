@@ -79,7 +79,7 @@ json的形式表示：
 获取上传数据
 
 ```objective-c
-[[AspectsLocalStorage setupStorage]getData];
+NSDictionary *data = [[AspectsLocalStorage setupStorage]getData];
 ```
 
 
