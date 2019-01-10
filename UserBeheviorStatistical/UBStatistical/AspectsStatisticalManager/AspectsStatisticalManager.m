@@ -42,12 +42,12 @@
     NSMutableArray *LCTs = [NSMutableArray array];
     NSMutableDictionary *resultDic = [NSMutableDictionary dictionary];
     for (EventTrackModel* model in dict[kEventTrack]) {
-        NSDictionary * modelDic = [self dicFromObject:model];
+        NSDictionary * modelDic = [self deserializationObject:model];
         [ETs addObject:modelDic];
         [resultDic setObject:ETs forKey:kEventTrack];
     }
     for (LifeCycleTrackModel *model in dict[kLiftCycleTrack]) {
-        NSDictionary * modelDic = [self dicFromObject:model];
+        NSDictionary * modelDic = [self deserializationObject:model];
         [LCTs addObject:modelDic];
         [resultDic setObject:LCTs forKey:kLiftCycleTrack];
     }
@@ -64,19 +64,18 @@
 
 
 
-- (NSDictionary *)dicFromObject:(id)object {
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    unsigned int count;
-    objc_property_t *propertyList = class_copyPropertyList([object class], &count);
-    
-    for (int i = 0; i < count; i++) {
-        objc_property_t property = propertyList[i];
-        const char *cName = property_getName(property);
-        NSString *name = [NSString stringWithUTF8String:cName];
-        NSObject *value = [object valueForKey:name];//valueForKey返回的数字和字符串都是对象
-        
-        value == nil?[dic setObject:[NSNull null] forKey:name]:[dic setObject:[self dicFromObject:value] forKey:name];
+- (NSDictionary *)deserializationObject:(id)object {
+    NSMutableDictionary *propsDic = [NSMutableDictionary dictionary];
+    unsigned int outCount, i;
+    objc_property_t *properties = class_copyPropertyList([self class], &outCount);
+    for (i = 0; i<outCount; i++) {
+        objc_property_t property = properties[i];
+        const char* char_f = property_getName(property);
+        NSString *propertyName = [NSString stringWithUTF8String:char_f];
+        id propertyValue = [self valueForKey:(NSString *)propertyName];
+        if (propertyValue) [propsDic setObject:propertyValue forKey:propertyName];
     }
-    return [dic copy];
+    free(properties);
+    return propsDic;
 }
 @end
