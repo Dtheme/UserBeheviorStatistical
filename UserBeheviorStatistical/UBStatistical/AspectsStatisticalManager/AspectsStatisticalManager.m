@@ -16,6 +16,7 @@
     dispatch_once(&onceToken, ^{
         singleton = [[self alloc] init];
     });
+    NSLog(@"");
     return singleton;
 }
 
