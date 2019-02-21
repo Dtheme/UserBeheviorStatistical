@@ -72,14 +72,17 @@ json的形式表示：
 
 在`AppDelegate.m`中初始化工具类：
 
-```objective-c
-修改UBSGlobaldefine.h中定义的宏，plist的文件名、plist中定义的监控事件和监控页面声明周期的key
 
+```objective-c
+[UBS_Manager runMonitorWithConfiguration:kConfigurationPlistFileName];
+```
+
+
+修改UBSGlobaldefine.h中定义的宏，plist的文件名、plist中定义的监控事件和监控页面声明周期的key
+```objective-c
 #define kEventTrack @"EventTrack"
 #define kLiftCycleTrack @"LiftCycleTrack"
 #define kConfigurationPlistFileName @"Aspects.plist"
-    
-[UBS_Manager runMonitorWithConfiguration:kConfigurationPlistFileName];
 ```
 
 获取本地存储的用户行为数据
